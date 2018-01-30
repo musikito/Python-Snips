@@ -1,4 +1,4 @@
 # python
 
 Here we will find most commons snippets for Python.
-Some algorithms, and functions to do samll stuff.
+Some algorithms, and functions to do small stuff.
