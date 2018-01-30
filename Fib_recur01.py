@@ -16,3 +16,16 @@ x = int(input("Enter the term till which you wnat to generate fibonacci sequence
 
 for i in range(x):
     print(GenerateFibonaci(i))
+    
+    
+ Enter the term till which you wnat to generate fibonacci sequence: 10
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34   
