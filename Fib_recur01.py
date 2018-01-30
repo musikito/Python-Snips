@@ -1,4 +1,4 @@
-#more elegant form of Fibonacci numbres recursively
+#more elegant form of Fibonacci numbers recursively
 def GenerateFibonaci(x):
 
     if(x == 0):
