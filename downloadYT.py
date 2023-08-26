@@ -1,5 +1,6 @@
 from pytube import YouTube
 import os
+import subprocess
 
 # import ssl
 
@@ -11,7 +12,7 @@ def download_video(video_url, save_to):
         yt = YouTube(video_url)
 
         # Get the highest resolution
-        video_stream = yt.streams.get_highest_resolution()
+        # video_stream = yt.streams.get_highest_resolution()
 
         # if you want just the audio
         audio_stream = yt.streams.get_audio_only()
@@ -20,11 +21,32 @@ def download_video(video_url, save_to):
         # video_stream.download(output_path=save_to)
 
         # Download audio
-        output = audio_stream.download(output_path=save_to)
-        # Convert to mp3
-        base, ext = os.path.splitext(output)
-        renamed = base + ".mp3"
-        os.rename(output, renamed)
+        print("Downloading... " + yt.title)
+        audio_stream.download(output_path=save_to)
+        # Get default name using pytube API
+        name = audio_stream.default_filename
+        # Use the same name with the mp3 extension
+        new_name = yt.title + ".mp3"
+        # Uncomment the next line if you want to enter your own name
+        # new_filename = input("Enter filename (including extension): "))  # e.g. new_filename.mp3
+
+        # Converting
+        print("Converting to mp3...")
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-i",
+                os.path.join(save_to, name),
+                os.path.join(save_to, new_name),
+            ]
+        )
+        # Delete the .mp4 file
+        print("Deleting file " + name)
+        os.remove(save_to + name)
+        # rename to mp3
+        # base, ext = os.path.splitext(output)
+        # renamed = base + ".mp3"
+        # os.rename(output, renamed)
 
         print(yt.title + " download completed")
 
