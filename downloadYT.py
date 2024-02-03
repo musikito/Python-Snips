@@ -42,7 +42,7 @@ def download_video(video_url, save_to):
         )
         # Delete the .mp4 file
         print("Deleting file " + name)
-        os.remove(save_to + name)
+        os.remove(save_to + "/" + name)
         # rename to mp3
         # base, ext = os.path.splitext(output)
         # renamed = base + ".mp3"
