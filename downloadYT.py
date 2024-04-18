@@ -17,7 +17,7 @@ def download_video(video_url, save_to):
         # if you want just the audio
         audio_stream = yt.streams.get_audio_only()
 
-        # Download video
+        # if you want just th video
         # video_stream.download(output_path=save_to)
 
         # Download audio
@@ -51,7 +51,7 @@ def download_video(video_url, save_to):
         print(yt.title + " download completed")
 
     except Exception as e:
-        print("Hay un Error: ", str(e))
+        print("There's an Error: ", str(e))
 
 
 video_link = str(input("Enter URL: \n>> "))  # Insert YT video link here
