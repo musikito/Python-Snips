@@ -19,6 +19,6 @@ def convert_wav_to_mp3(input_file, output_file):
 
 
 if __name__ == "__main__":
-    input_file = "415079__harrietniamh__video-game-death-sound-effect.wav"
-    output_file = "game_over.mp3"
+    input_file = "131660__bertrof__game-sound-correct.wav"
+    output_file = "brick_break1.mp3"
     convert_wav_to_mp3(input_file, output_file)
