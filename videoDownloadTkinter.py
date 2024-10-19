@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox
 from pytube import YouTube
 import os
 import subprocess
@@ -19,6 +19,10 @@ def download_content():
         else:
             stream = yt.streams.get_highest_resolution()
             file_extension = "mp4"
+            print(text=stream.title)
+
+        
+        messagebox.showinfo("Stream",f"Stream name: {stream.title}")
 
         status_label.config(text=f"Downloading... {yt.title}")
         stream.download(output_path=save_to)
