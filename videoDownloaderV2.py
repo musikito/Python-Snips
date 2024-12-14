@@ -3,6 +3,7 @@ from tkinter import filedialog, messagebox
 import yt_dlp
 import os
 
+
 # Function to download video
 def download_video():
     url = entry_url.get()
@@ -18,16 +19,30 @@ def download_video():
 
     # yt-dlp options for downloading video
     ydl_opts = {
-        'format': 'best',  # Best quality video
-        'outtmpl': os.path.join(download_folder, '%(title)s.%(ext)s'),  # Output template
+        # "format": "bestaudio/best",
+        # "postprocessors": [
+        #     {
+        #         "key": "FFmpegExtractAudio",
+        #         "preferredcodec": "mp3",
+        #         "preferredquality": "192",
+        #     }
+        # ],
+        # "outtmpl": "%(title)s.%(ext)s",
+        "format": "best",  # Best quality video
+        "outtmpl": os.path.join(
+            download_folder, "%(title)s.%(ext)s"
+        ),  # Output template
     }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        messagebox.showinfo("Success", f"Video downloaded successfully to {download_folder}")
+        messagebox.showinfo(
+            "Success", f"Video downloaded successfully to {download_folder}"
+        )
     except Exception as e:
         messagebox.showerror("Error", f"Download failed: {str(e)}")
+
 
 # Function to download audio and convert it to MP3 using FFmpeg
 def download_audio():
@@ -44,21 +59,28 @@ def download_audio():
 
     # yt-dlp options for downloading audio
     ydl_opts = {
-        'format': 'bestaudio/best',  # Best audio format
-        'outtmpl': os.path.join(download_folder, '%(title)s.%(ext)s'),  # Output template
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',  # Convert to mp3
-            'preferredquality': '192',  # Audio quality
-        }],
+        "format": "bestaudio/best",  # Best audio format
+        "outtmpl": os.path.join(
+            download_folder, "%(title)s.%(ext)s"
+        ),  # Output template
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",  # Convert to mp3
+                "preferredquality": "192",  # Audio quality
+            }
+        ],
     }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        messagebox.showinfo("Success", f"Audio downloaded and converted to MP3 in {download_folder}")
+        messagebox.showinfo(
+            "Success", f"Audio downloaded and converted to MP3 in {download_folder}"
+        )
     except Exception as e:
         messagebox.showerror("Error", f"Download failed: {str(e)}")
+
 
 # Initialize Tkinter window
 root = tk.Tk()
